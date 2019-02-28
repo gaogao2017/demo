@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link rel="dns-prefetch" href="">
+    <link rel="stylesheet" href="">
+    <style>
+        * {
+            margin: 0;
+            padding: 0
+        }
+        
+        #a {
+            width: 300px;
+            height: 300px;
+            overflow: hidden;
+            background: #f00;
+            padding: 10px;
+            border: 1px solid #ff0;
+            margin: 100px;
+            text-align: center;
+            color: #fff;
+            line-height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div style="position:absolute;right:0px;top:0px;overflow: hidden;;">
+        <div id="a" width="300">a 宽度300，内间距20,边框2，外间距100</div>
+    </div>
+    <div id="widthInfo">
+        <h2>获取宽度对比：</h2>
+    </div>
+    <div id="heightInfo">
+        <h2>clientHeight:</h2>
+    </div>
+    <div id="topInfo">
+        <h2>获取元素位置top信息:</h2>
+    </div>
+    <div id="mousePosInfo">
+        <h2>获取鼠标坐标轴信息:</h2>
+        <DIV></DIV>
+    </div>
+    <div style="width:100%;height:2000px; overflow: hidden;"></div>
+    <script>
+        var a = document.getElementById("a");
+        var dom; {
+            var widthInfo = document.getElementById("widthInfo");
+            var widthStr = [`clientWidth:${a.clientWidth}`, `offsetWidth:${a.offsetWidth}`, `scrollWidth:${a.scrollWidth}`, `getBoundingClientRect.width:${a.getBoundingClientRect().width}`, `width:${a.style.width}`];
+
+            widthStr.forEach((item) => {
+                dom = document.createElement('p');
+                dom.innerHTML = item;
+                widthInfo.appendChild(dom);
+            })
+        } {
+            var heightInfo = document.getElementById("heightInfo");
+            var heightStr = [`document.body.clientHeight:${document.body.clientHeight}`, `document.documentElement.clientHeight:${document.documentElement.clientHeight}`];
+            heightStr.forEach((item) => {
+                dom = document.createElement('p');
+                dom.innerHTML = item;
+                heightInfo.appendChild(dom);
+            })
+        } {
+            var topInfo = document.getElementById("topInfo");
+            var topStr = [`offsetTop:${a.offsetTop}`, `getBoundingClientRect().top:${a.getBoundingClientRect().top}`];
+            topStr.forEach((item) => {
+                dom = document.createElement('p');
+                dom.innerHTML = item;
+                topInfo.appendChild(dom);
+            })
+        } {
+            var mousePosInfo = document.getElementById("mousePosInfo").getElementsByTagName("div")[0];
+
+            a.onmousedown = function(event) {
+                var mousePosStr = [`offsetY:${event.offsetY}`, `clientY:${event.clientY}`, `pageY:${event.pageY}`, `screenY:${event.screenY}`];
+                mousePosInfo.innerHTML = '';
+                mousePosStr.forEach((item) => {
+                    dom = document.createElement('p');
+                    dom.innerHTML = item;
+                    mousePosInfo.appendChild(dom);
+                })
+            }
+        }
+        console.log(document.body.clientHeight)
+        console.log(document.documentElement.clientHeight)
+    </script>
+</body>
+
+</html>

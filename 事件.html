@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link rel="dns-prefetch" href="">
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+    <div id="wrapper"></div>
+    <input type="button" id="btn" value="新增A标签">
+    <input type="button" id="btn2" value="新增span">
+    <script>
+        var btn = document.getElementById("btn");
+        var btn2 = document.getElementById("btn2");
+        var wrapper = document.getElementById("wrapper");
+        var i = 0;
+        addEventHandler(btn, 'click', function() {
+            i++;
+            var t = document.createElement("a");
+            t.innerHTML = '点我' + i + '</br>';
+            wrapper.appendChild(t);
+
+        })
+
+        addEventHandler(btn2, 'click', function() {
+            var t = document.createElement("span");
+            t.innerHTML = '————————————</br>';
+            wrapper.appendChild(t);
+
+        })
+        addEventHandler(wrapper, 'click', function(e) {
+            let event = e || window.event;
+            let target = event.target || e.srcElement;
+            if (target.tagName.toLowerCase() == 'a') {
+                console.log(target.innerText)
+            }
+
+        })
+
+        /*
+         *  oTarget：监听对象 
+         *  sEventType：监听事件类型，如click,mouseover 
+         *  fnHandler：监听函数 
+         */
+        function addEventHandler(oTarget, sEventType, fnHandler) {
+            if (oTarget.addEventListener) { //监听IE9，谷歌和火狐  
+                oTarget.addEventListener(sEventType, fnHandler, false);
+            } else if (oTarget.attachEvent) { //IE  
+                oTarget.attachEvent("on" + sEventType, fnHandler);
+            } else {
+                oTarget["on" + sEventType] = fnHandler;
+            }
+        }
+        /* 
+         * 采用事件监听给对象绑定方法后，可以解除相应的绑定 
+         *  oTarget：监听对象 
+         *  sEventType：监听事件类型，如click,mouseover 
+         *  fnHandler：监听函数 
+         */
+        function removeEventHandler(oTarget, sEventType, fnHandler) {
+            if (oTarget.removeEventListener) {
+                //监听IE9，谷歌和火狐  
+                oTarget.removeEventListener(sEventType, fnHandler, false);
+            } else if (oTarget.detachEvent) {
+                oTarget.detachEvent("on" + sEventType, fnHandler);
+            } else {
+                delete oTarget["on" + sEventType];
+            }
+        }
+    </script>
+</body>
+
+</html>

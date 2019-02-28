@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link rel="dns-prefetch" href="">
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+    typeof 能正确返回函数/字符串/对象/undefined的类型，但数组和null会返回object<br> instanceof 用户验证 A是不是B的圆形 B instanceof A;
+    <Br> Object.prototype.toSting.apply(A) 能正确返回函数/字符串/对象/数组/null/undefined的类型，返回格式是[object Function],但是在ie678下null undefined 会返回[object Object]
+    <script>
+        var s = '123';
+        var a = [1, 2];
+        var o = {
+            a: 1,
+            b: 2
+        };
+        var f = function() {
+            console.log(1);
+        }
+        var i = +s;
+        console.log(typeof i, i)
+        console.log('typeof', typeof f, '函数')
+        console.log('typeof', typeof s, s);
+        console.log('typeof', typeof a, a);
+        console.log('typeof', typeof o, o);
+        console.log('typeof', typeof null, 'null');
+        console.log('typeof', typeof undefined, 'undefined');
+
+        console.log('Object.prototype.toString.apply()', Object.prototype.toString.apply(f), '函数')
+        console.log('Object.prototype.toString.apply()', Object.prototype.toString.apply(s), s)
+        console.log('Object.prototype.toString.apply()', Object.prototype.toString.apply(a), a)
+        console.log('Object.prototype.toString.apply()', Object.prototype.toString.apply(o), o)
+        console.log('Object.prototype.toString.apply()', Object.prototype.toString.apply(null), 'null')
+        console.log('Object.prototype.toString.apply()', Object.prototype.toString.apply(undefined), 'undefined')
+
+        console.log('instanceof', f instanceof Function, '函数')
+        console.log('instanceof', s instanceof String, s)
+        console.log('instanceof', a instanceof Array, a)
+        console.log('instanceof', o instanceof Object, o)
+        console.log('instanceof', null instanceof Object, 'null')
+        console.log('instanceof', undefined instanceof Object, 'undefined')
+    </script>
+</body>
+
+</html>
